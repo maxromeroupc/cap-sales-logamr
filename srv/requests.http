@@ -1,0 +1,44 @@
+###
+Get http://localhost:4004/sales-order-srv/Items
+
+###
+Get http://localhost:4004/sales-order-srv/UnitOfMeasure
+
+### Get Header
+Get http://localhost:4004/sales-order-srv/Header
+
+###Create header
+POST http://localhost:4004/sales-order-srv/Header HTTP/1.1
+Content-Type: application/json
+
+{
+    "ID" : "header03",
+    "Email" : "head03@gmail.com",
+    "FirstName": "Julio",
+    "LastName" : "Tello",
+    "Country": "PE",
+    "CreateOn": "2023-03-28",
+    "DeliveryDate": "2023-03-30T12:00:00Z",
+    "OrderStatus": 1,
+    "ImageUrl": "head003"  
+}
+
+### Update Sales
+PUT http://localhost:4004/sales-order-srv/Header('header03') HTTP/1.1
+Content-Type: application/json
+
+{
+    "Email" : "head03@upd.com",
+    "FirstName" : "Juan",
+    "LastName" : "Perez",
+    "Country" : "PR",
+    "DeliveryDate" : "2023-03-31T12:00:00Z",
+    "OrderStatus" : 0
+}
+
+
+### Delete entity
+DELETE http://localhost:4004/sales-order-srv/Header('header03')
+
+### Delete mediante acción
+DELETE http://localhost:4004/sales-order-srv/Header('header01')/SalesOrderSrv.deleteOrder

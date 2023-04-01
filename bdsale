@@ -1,0 +1,36 @@
+
+CREATE TABLE com_logali_header (
+  ID NVARCHAR(36) NOT NULL,
+  Email NVARCHAR(30),
+  FirstName NVARCHAR(30),
+  LastName NVARCHAR(5000),
+  Country NVARCHAR(30),
+  CreateOn DATE_TEXT,
+  DeliveryDate TIMESTAMP_TEXT,
+  OrderStatus INTEGER,
+  ImageUrl NVARCHAR(5000),
+  PRIMARY KEY(ID)
+);
+
+CREATE TABLE com_logali_items (
+  ID NVARCHAR(36) NOT NULL,
+  Name NVARCHAR(40),
+  Description NVARCHAR(40),
+  ReleaseDate TIMESTAMP_TEXT,
+  DiscontinuedDate TIMESTAMP_TEXT,
+  Price DECIMAL(12, 2),
+  Height DECIMAL(15, 3),
+  Width DECIMAL(15, 3),
+  Depth DECIMAL(12, 2),
+  Quantity DECIMAL(16, 2),
+  UnitOfMeasure_ID NVARCHAR(2),
+  Header_ID NVARCHAR(36),
+  PRIMARY KEY(ID)
+);
+
+CREATE TABLE com_logali_UnitOfMeasure (
+  ID NVARCHAR(2) NOT NULL,
+  Description NVARCHAR(5000),
+  PRIMARY KEY(ID)
+);
+

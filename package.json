@@ -1,0 +1,64 @@
+{
+  "name": "sales",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^6",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/ux-specification": "^1.108.1",
+    "@sapui5/ts-types": "^1.92.2",
+    "eslint": "^7.32.0",
+    "sqlite3": "^5.0.4"
+  },
+  "scripts": {
+    "start": "cds run",
+    "watch-sale": "cds watch --open sale/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-salesorders": "cds watch --open salesorders/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-sales": "cds watch --open sales/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-salesord": "cds watch --open salesord/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "engines": {
+    "node": "^16.15"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "sapux": [
+    "app/sale",
+    "app/sale",
+    "app/sale",
+    "app/salesorders",
+    "app/sales",
+    "app/salesord",
+    "app/sales"
+  ]
+}
