@@ -27,8 +27,24 @@ define service SalesOrderSrv {
             Item.Quantity
         };
 
+    entity Item as 
+    select from logali.items {
+        ID,
+        Name,
+        Description,
+        ReleaseDate,
+        DiscontinuedDate,
+        Price,
+        Height,
+        Width,
+        Depth,
+        Quantity,
+        Header
+    };
+
+
     //@odata.draft.enabled
-    entity Item as projection on logali.items;
+    //entity Item as projection on logali.items;
 
     entity UnitOfMeasure as projection on logali.UnitOfMeasure;
 
