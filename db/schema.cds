@@ -1,6 +1,6 @@
 namespace com.logali;
 
-using {managed} from '@sap/cds/common';
+using { cuid, managed } from '@sap/cds/common';
 
 define type Dec : Decimal(12, 2);
 type Dats       : DateTime;
@@ -11,17 +11,7 @@ type Dec16      : Decimal(16, 2);
 type ZDE_MEINS  : String(2);
 
 
-//  entity header @(
-//      Capabilities : {
-//          InsertRestrictions.Insertable : true,
-//          UpdateRestrictions.Updatable  : true,
-//          DeleteRestrictions.Deletable  : true,
-//          //Insertable,
-//      }
-//  ) {
-entity header {
-        //key ID : UUID;
-    key ID           : String(36);
+entity header : cuid {        
         Email        : String(30);
         FirstName    : String(30);
         LastName     : String;
@@ -30,12 +20,10 @@ entity header {
         DeliveryDate : DateTime;
         OrderStatus  : Integer;
         ImageUrl     : String;
-        Item         : Association to items on Item.Header = $self;
+        Item         : Composition of items on Item.Header = $self;
 }
 
-entity items {
-    key ID               : Char36;
-        //key ID : UUID;
+entity items : cuid {    
         Name             : Char40;
         Description      : Char40;
         ReleaseDate      : Dats;
@@ -55,3 +43,30 @@ entity UnitOfMeasure {
     key ID          : String(2);
         Description : String;
 }
+
+// entity Headers : cuid {        
+//         Email        : String(30);
+//         FirstName    : String(30);
+//         LastName     : String;
+//         Country      : String(30);
+//         CreateOn     : Date;
+//         DeliveryDate : DateTime;
+//         OrderStatus  : Integer;
+//         ImageUrl     : String;        
+// }
+
+// entity Itemss : cuid {    
+//         Name             : Char40;
+//         Description      : Char40;
+//         ReleaseDate      : Dats;
+//         DiscontinuedDate : Dats;
+//         Price            : Dec;
+//         Height           : Quan;
+//         Width            : Quan;
+//         Depth            : Dec;
+//         Quantity         : Dec16;
+//         //Asoc administrada
+//         UnitOfMeasure    : Association to UnitOfMeasure;
+//         HeaderID : UUID;
+//         ToHeaders : Association to one Headers on ToHeaders.ID = HeaderID;
+// }

@@ -1,3 +1,3 @@
 ID,Name,Description,ReleaseDate,DiscontinuedDate,Price,Height,Width,Depth,Quantity,UnitOfMeasure_ID,Header_ID
-header01,Mouse,Mouse inalambrico,1/01/2023,1/01/2023,25,10,15,10,20,PC,header01
-header02,Teclado,Teclado inalambrico,1/01/2023,1/01/2023,30,20,60,5,10,PK,header02
+header01,Mouse,Mouse inalambrico,1/01/2023,1/01/2023,25,10,15,10,20,PC,974123ca-5cf4-4eb7-a9ba-aaabb9a6184e
+header02,Teclado,Teclado inalambrico,1/01/2023,1/01/2023,30,20,60,5,10,PK,69ec0821-9810-41fa-b73b-d8620267e3eb

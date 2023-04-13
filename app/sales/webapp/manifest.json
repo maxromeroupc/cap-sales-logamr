@@ -84,10 +84,10 @@
                 "dataSource": "mainService",
                 "preload": true,
                 "settings": {
-                    "synchronizationMode": "None",
+                    "synchronizationMode": "None",                    
                     "operationMode": "Server",
                     "autoExpandSelect": true,
-                    "earlyRequests": true
+                    "earlyRequests": true                    
                 }
             },
             "@i18n": {
@@ -120,7 +120,7 @@
                     "options": {
                         "settings": {
                             "entitySet": "Header",
-                            "variantManagement": "Page",
+                            "variantManagement": "Page",                            
                             "navigation": {
                                 "Header": {
                                     "detail": {

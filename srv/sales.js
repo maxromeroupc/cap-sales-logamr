@@ -3,146 +3,108 @@ const { header, items } = cds.entities("com.logali");
 
 module.exports = (srv) => {
 
+    srv.before("*", (req) => {
+        console.log("Method MR: ", req.method);
+        console.log("local :", req.user.locale);
+        //console.log("Target MR: ", req.target);
+    } );
+
+
     // srv.on("READ", "Header", async (req) => {
     //     //console.log("Read Header : ", " Read to header");
     //     return await SELECT.from(header);
     // } );
 
-    srv.on("CREATE", "Header", async (req) => {
-        console.log("Creando la header...");
-        let returnData = await cds.transaction(req).run(
-            
-            INSERT.into(header).entries({
-                ID: req.data.ID,
-                Email: req.data.Email,
-                FirstName: req.data.FirstName,
-                LastName: req.data.LastName,
-                Country: req.data.Country,
-                CreateOn: req.data.CreateOn,
-                DeliveryDate: req.data.DeliveryDate,
-                OrderStatus: req.data.OrderStatus,
-                ImageUrl: req.data.ImageUrl
-            })
+    // srv.on("CREATE", "Header", async (req) => {    
+    //     console.log("ON CREATE header MR");    
+    //     let returnData = await cds.transaction(req).run(            
+    //         INSERT.into(header).entries({
+    //             ID: req.data.ID,
+    //             Email: req.data.Email,
+    //             FirstName: req.data.FirstName,
+    //             LastName: req.data.LastName,
+    //             Country: req.data.Country,
+    //             CreateOn: req.data.CreateOn,
+    //             DeliveryDate: req.data.DeliveryDate,
+    //             OrderStatus: req.data.OrderStatus,
+    //             ImageUrl: req.data.ImageUrl
+    //         })
+    //     ).then((resolve, reject) => {            
+    //         if (typeof resolve != "undefined") {
+    //             return req.data;
+    //         } else {
+    //             req.error(409, "Registro no insertado.");
+    //         }
+    //     }).catch((err) => {
+    //         console.log("Error : ", err);
+    //         req.error(err.code, err.message);
+    //     });
+    //     console.log("Antes del return Create: ", returnData);
+    //     return returnData;        
+    // } );
 
-        ).then((resolve, reject) => {
-            console.log("Resolve Header ...: ", resolve);
-            console.log("Reject : ", reject);
-            if (typeof resolve != "undefined") {
-                return req.data;
-            } else {
-                req.error(409, "Registro no insertado.");
-            }
+    // srv.on("UPDATE","Header", async (req) => {        
+    //     console.log("ON UPD header MR");
+    //     let returnData = await cds.transaction(req).run(
+    //         UPDATE(header, req.data.ID).set({
+    //             Email : req.data.Email,
+    //             FirstName : req.data.FirstName,
+    //             LastName : req.data.LastName,
+    //             Country : req.data.Country,
+    //             DeliveryDate : req.data.DeliveryDate,
+    //             OrderStatus : req.data.OrderStatus
+    //         })
+    //     ).then( (resolve, reject) => {
+    //         if(resolve[0] == 0){
+    //             req.error(409,"El registro no fue encontrado");
+    //         }
+    //     }).catch( (err) => {
+    //         //req.error(err.code, err.message);
+    //         req.error(err.code,"error upd mr");
+    //     });        
+    //     console.log("Antes del return UPD: ", returnData);
+    //     return returnData;
+    // } );
 
-        }).catch((err) => {
-            console.log("Error : ", err);
-            req.error(err.code, err.message);
-        });
+    // srv.on("DELETE", "Header", async (req) => {       
+    //     console.log("ON DEL header MR"); 
+    //     let returnData = await cds.transaction(req).run(
+    //         DELETE.from(header).where({
+    //             ID : req.data.ID
+    //         })
+    //     ).then( (resolve, reject) => {
+    //         if( resolve !== 1 ){
+    //             req.error(409, "Registro no existe.");
+    //         }}
+    //     ).catch( (err) => {
+    //         req.error(err.code, err.message);
+    //     });
+    //     return returnData;
+    // });
 
-        console.log("Antes de terminar : ", returnData)
-        return returnData;        
-    } );
+    //Draft
+    // srv.before("CREATE", "Header", async (req) =>{
+    //     console.log("Begin before Create draft MR", req.data);        
+    // });
 
-    srv.on("UPDATE","Header", async (req) => {
-        console.log("Actualizando el Header ...");
-        let returnData = await cds.transaction(req).run(
-            UPDATE(header, req.data.ID).set({
-                Email : req.data.Email,
-                FirstName : req.data.FirstName,
-                LastName : req.data.LastName,
-                Country : req.data.Country,
-                DeliveryDate : req.data.DeliveryDate,
-                OrderStatus : req.data.OrderStatus
-            }) 
+    // srv.before("UPDATE", "Header", async (req) =>{
+    //     console.log("Begin Update SAVE draft MR", req.data);        
+    // });
 
-        ).then( (resolve, reject) => {
-            if(resolve[0] == 0){
-                req.error(409,"El registro no fue encontrado");
-            }
-        }).catch( (err) => {
-            req.error(err.code, err.message);
-        });
-        //console.log("Antes de Actualizar : ",returnData);
-        return returnData;
+    // srv.before("SAVE", "Header", async (req) =>{
+    //     console.log("Begin before SAVE draft MR", req.data);        
+    // });
 
-    } );
+    // srv.before("EDIT", "Header", async (req) =>{
+    //     console.log("Edit SAVE draft MR", req.data);        
+    // });
 
-    srv.on("DELETE", "Header", async (req) => {
-        console.log("Borrando el Header ...");
-        let returnData = await cds.transaction(req).run(
-            DELETE.from(header).where({
-                ID : req.data.ID
-            })
-        ).then( (resolve, reject) => {
-            if( resolve !== 1 ){
-                req.error(409, "Registro no existe.");
-            }}
-        ).catch( (err) => {
-            req.error(err.code, err.message);
-        });
-        return returnData;
-    });
+    // srv.before("NEW", "Header", async (req) =>{
+    //     console.log("Begin NEW draft MR", req.data);
+    // });
 
-
-    //Acciones
-    srv.on("createOrder", async (req) => {
-        console.log("Aqui se creará el objeto");
-        let returnData = await cds.transaction(req).run(
-
-            INSERT.into(header).entries({
-                ID: req.ID,
-                Email: req.data.Email,
-                FirstName: req.data.FirstName,
-                LastName: req.data.LastName,
-                Country: req.data.Country,
-                CreateOn: req.data.CreateOn,
-                DeliveryDate: req.data.DeliveryDate,
-                OrderStatus: req.data.OrderStatus,
-                ImageUrl: req.data.ImageUrl
-            })
-
-        ).then((resolve, reject) => {
-            console.log("Resolve : ", resolve);
-            console.log("Reject : ", reject);
-            if (typeof resolve != "undefined") {
-                return req.data;
-            } else {
-                req.error(409, "Registro no insertado.");
-            }
-
-        }).catch((err) => {
-            console.log("Error : ", err);
-            req.error(err.code, err.message);
-        });
-
-        console.log("Antes de terminar : ", returnData)
-        return returnData;        
-    });
-
-    srv.on("updateOrder", async (req) => {
-        console.log("Aqui se Actualizará el objeto");
-        let returnData = await cds.transaction(req).run(
-            UPDATE(header, req.data.ID).set({
-                Email : req.data.Email,
-                FirstName : req.data.FirstName,
-                LastName : req.data.LastName,
-                Country : req.data.Country,
-                DeliveryDate : req.data.DeliveryDate,
-                OrderStatus : req.data.OrderStatus
-            }) 
-
-        ).then( (resolve, reject) => {
-            if(resolve[0] == 0){
-                req.error(409,"El registro no fue encontrado");
-            }
-        }).catch( (err) => {
-            req.error(err.code, err.message);
-        });
-        console.log("Antes de Actualizar : ",returnData);
-        return returnData;
-    });
-
-    srv.on("deleteOrder", async (req) => {
-        console.log("Aqui se eliminará el objeto");
-    });
+    // srv.on("draftActivate", async (req) =>{
+    //     console.log("draf Activate ON MR", req.data);
+    // } );
 
 };

@@ -8,12 +8,14 @@
   "dependencies": {
     "@sap/cds": "^6",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "cors": "^2.8.5",
     "express": "^4"
   },
   "devDependencies": {
     "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
-    "@sap/ux-specification": "^1.108.1",
+    "@sap/ux-specification": "^1.108.2",
     "@sapui5/ts-types": "^1.92.2",
+    "cds-swagger-ui-express": "^0.6.0",
     "eslint": "^7.32.0",
     "sqlite3": "^5.0.4"
   },
@@ -22,7 +24,8 @@
     "watch-sale": "cds watch --open sale/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-salesorders": "cds watch --open salesorders/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-sales": "cds watch --open sales/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-salesord": "cds watch --open salesord/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-salesord": "cds watch --open salesord/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-headers": "cds watch --open headers/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "engines": {
     "node": "^16.15"
@@ -52,13 +55,18 @@
       "require-atomic-updates": "off"
     }
   },
+  "cds": {
+    "i18n": {
+      "default_language": "en",
+      "folders": [
+        "_i18n",
+        "i18n",
+        "assets/i18n"
+      ]
+    }
+  },
   "sapux": [
-    "app/sale",
-    "app/sale",
-    "app/sale",
-    "app/salesorders",
     "app/sales",
-    "app/salesord",
-    "app/sales"
+    "app/headers"
   ]
 }
